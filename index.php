@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form action="../get.php" method="get">
+
+    </form>
 </body>
 </html>
