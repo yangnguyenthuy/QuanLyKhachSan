@@ -7,8 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="../get.php" method="get">
+  <h1> Thu sua compile </h1> 
+  <form action="../get.php" method="get">
 
-    </form>
+  </form>
 </body>
 </html>
