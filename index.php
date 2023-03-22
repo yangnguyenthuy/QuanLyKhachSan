@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-   <h1> Thu sua compile </h1> 
+  <h1> Thu sua compile </h1> 
+  <form action="../get.php" method="get">
+
+  </form>
 </body>
 </html>
