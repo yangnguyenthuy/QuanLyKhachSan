@@ -3,9 +3,9 @@
         $server = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "qldl";
+        $dbname = "qlks";
         $con = mysqli_connect($server,$username,$password);
-        mysqli_set_charset($con,"uft8");
+        //mysqli_set_charset($con,"uft8");
         if(!$con){
             echo "Ket noi khong thanh cong";
         }
