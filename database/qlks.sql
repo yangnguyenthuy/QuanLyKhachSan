@@ -3,11 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2023 at 07:36 AM
+-- Generation Time: Mar 31, 2023 at 09:08 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
-create Database qlks;
+CREATE qlks;
 use qlks;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -71,10 +71,21 @@ CREATE TABLE `datphong` (
 --
 
 CREATE TABLE `dichvu` (
-  `MaDV` int(11) NOT NULL,
+  `MaDV` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `LoaiDV` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `TenDV` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `GiaDV` float NOT NULL
+  `GiaDV` float NOT NULL,
+  `MoTa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `TrangThai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL DEFAULT 'Enable'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dichvu`
+--
+
+INSERT INTO `dichvu` (`MaDV`, `LoaiDV`, `TenDV`, `GiaDV`, `MoTa`, `TrangThai`) VALUES
+('DV001', 'Thư giãn', 'Spa', 500000, 'Thư giãn gân cốt', 'Enable'),
+('DV002', 'Thư giãn', 'Xem kịch', 500000, 'Xem kịch giải trí', 'Disable');
 
 -- --------------------------------------------------------
 
@@ -112,12 +123,27 @@ CREATE TABLE `phiphatsinh` (
 
 CREATE TABLE `phong` (
   `MaPhong` int(11) NOT NULL,
-  `SoPhong` int(11) NOT NULL,
-  `Tang` int(11) NOT NULL,
+  `SoPhong` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `LoaiPhong` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `TenPhong` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `TienIchPhong` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `SoNguoiToiDa` int(11) NOT NULL,
   `GiaPhong` float NOT NULL,
-  `TrangThai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
+  `TrangThai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL DEFAULT 'Empty',
+  `DienTich` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `Giuong` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `MoTa1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `MoTa2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `Hinh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `phong`
+--
+
+INSERT INTO `phong` (`MaPhong`, `SoPhong`, `LoaiPhong`, `TenPhong`, `TienIchPhong`, `SoNguoiToiDa`, `GiaPhong`, `TrangThai`, `DienTich`, `Giuong`, `MoTa1`, `MoTa2`, `Hinh`) VALUES
+(1, 'SP001', 'Standard', 'Phòng Standard', 'Có wifi, tivi, máy lạnh,...', 2, 400, 'Empty', '30 ft', 'King', '', '', 'room-1.jpg'),
+(2, 'SP002', 'Standard', 'Phòng Standard', 'Có wifi, tivi, máy lạnh,...', 2, 400, 'Disable', '30 ft', 'King', 'Phòng tiện ích đầy đủ', '', 'room-2.jpg');
 
 -- --------------------------------------------------------
 
@@ -126,16 +152,25 @@ CREATE TABLE `phong` (
 --
 
 CREATE TABLE `taikhoan` (
-  `MaTK` int(11) NOT NULL,
+  `MaTK` int(255) NOT NULL,
+  `MaNV` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `TaiKhoan` varchar(255) NOT NULL,
   `MatKhau` varchar(255) NOT NULL,
   `TenNV` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `DiaChi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `Email` varchar(255) NOT NULL,
+  `CMND` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `SDT` varchar(255) NOT NULL,
+  `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `Role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `TrangThai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
+  `TrangThai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL DEFAULT 'Enable'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `taikhoan`
+--
+
+INSERT INTO `taikhoan` (`MaTK`, `MaNV`, `TaiKhoan`, `MatKhau`, `TenNV`, `CMND`, `SDT`, `Email`, `Role`, `TrangThai`) VALUES
+(1, 'NV001', 'admin', 'admin', 'Yang Nguyên Thụy', '0987654321', '0987654321', 'nguyenthuy@gmail.com', 'Admin', 'Enable'),
+(2, 'NV002', 'TestMem', '123456789', 'Test Member', '0123456789', '0987654321', 'test@gmail.com', 'Admin', 'Enable');
 
 --
 -- Indexes for dumped tables
@@ -218,12 +253,6 @@ ALTER TABLE `datphong`
   MODIFY `MaDP` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `dichvu`
---
-ALTER TABLE `dichvu`
-  MODIFY `MaDV` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
@@ -239,13 +268,13 @@ ALTER TABLE `phiphatsinh`
 -- AUTO_INCREMENT for table `phong`
 --
 ALTER TABLE `phong`
-  MODIFY `MaPhong` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaPhong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `MaTK` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaTK` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -255,8 +284,7 @@ ALTER TABLE `taikhoan`
 -- Constraints for table `chitietdatdichvu`
 --
 ALTER TABLE `chitietdatdichvu`
-  ADD CONSTRAINT `chitietdatdichvu_ibfk_1` FOREIGN KEY (`MaDP`) REFERENCES `datphong` (`MaDP`),
-  ADD CONSTRAINT `chitietdatdichvu_ibfk_2` FOREIGN KEY (`MaDV`) REFERENCES `dichvu` (`MaDV`);
+  ADD CONSTRAINT `chitietdatdichvu_ibfk_1` FOREIGN KEY (`MaDP`) REFERENCES `datphong` (`MaDP`);
 
 --
 -- Constraints for table `chitietdatphong`
@@ -274,7 +302,6 @@ ALTER TABLE `hoadon`
 -- Constraints for table `phiphatsinh`
 --
 ALTER TABLE `phiphatsinh`
-  ADD CONSTRAINT `phiphatsinh_ibfk_1` FOREIGN KEY (`MaDV`) REFERENCES `dichvu` (`MaDV`),
   ADD CONSTRAINT `phiphatsinh_ibfk_2` FOREIGN KEY (`MaDP`) REFERENCES `datphong` (`MaDP`);
 COMMIT;
 
