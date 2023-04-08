@@ -41,5 +41,4 @@
         crossorigin="anonymous"></script>
 
     <scripts src="./style/js/billtotal.js"></scripts>
-
 </head>

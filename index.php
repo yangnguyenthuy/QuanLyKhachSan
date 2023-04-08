@@ -63,5 +63,5 @@
 
 
     <!-- Footer Section Begin -->
-    <?php require './view/Shared/footer.php'; ?>
+    <?php //require './view/Shared/footer.php'; ?>
 </body>

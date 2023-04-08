@@ -3,6 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+
 -- Generation Time: Apr 07, 2023 at 12:53 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
@@ -26,6 +27,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+
 -- Table structure for table `checkin`
 --
 
@@ -65,7 +67,6 @@ CREATE TABLE `datdichvu` (
 INSERT INTO `datdichvu` (`MaDatDV`, `MaHD`, `MaDV`) VALUES
 (7, 1, 'DV001'),
 (8, 1, 'DV002');
-
 -- --------------------------------------------------------
 
 --
@@ -91,7 +92,6 @@ INSERT INTO `datphong` (`MaDP`, `HoTen`, `CMND`, `SDT`, `NgayNhanPhong`, `NgayTr
 (1, 'Yang Nguyên Thụy', '090987654321', '0987654321', '2/4/2023', '10/4/2023', 'Confirm', 1),
 (2, 'Phạm Hữu Trí', '0987654321', '0987654321', '2023-04-04', '2023-04-18', 'Confirm', 2),
 (4, 'Phạm Hữu Trí', '0123456789', '0987654321', '2023-04-18', '2023-04-25', 'Cancel', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -219,6 +219,7 @@ INSERT INTO `taikhoan` (`MaTK`, `MaNV`, `TaiKhoan`, `MatKhau`, `TenNV`, `CMND`, 
 --
 
 --
+
 -- Indexes for table `checkin`
 --
 ALTER TABLE `checkin`
@@ -233,12 +234,15 @@ ALTER TABLE `datdichvu`
   ADD KEY `MaHD` (`MaHD`),
   ADD KEY `MaDV` (`MaDV`);
 
+
 --
 -- Indexes for table `datphong`
 --
 ALTER TABLE `datphong`
+
   ADD PRIMARY KEY (`MaDP`),
   ADD KEY `MaPhong` (`MaPhong`);
+
 
 --
 -- Indexes for table `dichvu`
@@ -250,6 +254,7 @@ ALTER TABLE `dichvu`
 -- Indexes for table `hoadon`
 --
 ALTER TABLE `hoadon`
+
   ADD PRIMARY KEY (`MaHD`);
 
 --
@@ -264,6 +269,7 @@ ALTER TABLE `phong`
 ALTER TABLE `quyen`
   ADD PRIMARY KEY (`MaQuyen`);
 
+
 --
 -- Indexes for table `taikhoan`
 --
@@ -275,6 +281,7 @@ ALTER TABLE `taikhoan`
 --
 
 --
+
 -- AUTO_INCREMENT for table `checkin`
 --
 ALTER TABLE `checkin`
@@ -285,6 +292,7 @@ ALTER TABLE `checkin`
 --
 ALTER TABLE `datdichvu`
   MODIFY `MaDatDV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 
 --
 -- AUTO_INCREMENT for table `datphong`
@@ -315,6 +323,7 @@ ALTER TABLE `taikhoan`
 --
 
 --
+
 -- Constraints for table `checkin`
 --
 ALTER TABLE `checkin`
@@ -332,6 +341,7 @@ ALTER TABLE `datdichvu`
 --
 ALTER TABLE `datphong`
   ADD CONSTRAINT `datphong_ibfk_1` FOREIGN KEY (`MaPhong`) REFERENCES `phong` (`MaPhong`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
