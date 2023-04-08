@@ -3,11 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2023 at 09:08 AM
+
+-- Generation Time: Apr 07, 2023 at 12:53 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
-CREATE qlks;
+CREATE Database qlks;
 use qlks;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,29 +27,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitietdatdichvu`
+
+-- Table structure for table `checkin`
 --
 
-CREATE TABLE `chitietdatdichvu` (
-  `MaCTDDV` int(11) NOT NULL,
-  `MaDV` int(11) NOT NULL,
-  `MaDP` int(11) NOT NULL,
-  `TrangThai` varchar(255) NOT NULL
+CREATE TABLE `checkin` (
+  `MaCheckIn` int(11) NOT NULL,
+  `HoTenKH` varchar(255) NOT NULL,
+  `SDT` varchar(255) NOT NULL,
+  `NgayCheckIn` varchar(255) NOT NULL,
+  `NgayCheckOut` varchar(255) NOT NULL,
+  `MaPhong` int(11) NOT NULL,
+  `MaHD` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `checkin`
+--
+
+INSERT INTO `checkin` (`MaCheckIn`, `HoTenKH`, `SDT`, `NgayCheckIn`, `NgayCheckOut`, `MaPhong`, `MaHD`) VALUES
+(1, 'Phạm Hữu Trí', '0987654321', '4/7/2023', '', 2, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitietdatphong`
+-- Table structure for table `datdichvu`
 --
 
-CREATE TABLE `chitietdatphong` (
-  `MaCTDP` int(11) NOT NULL,
-  `TenKhach` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `CMND` varchar(255) NOT NULL,
-  `MaDP` int(11) NOT NULL
+CREATE TABLE `datdichvu` (
+  `MaDatDV` int(11) NOT NULL,
+  `MaHD` int(11) NOT NULL,
+  `MaDV` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `datdichvu`
+--
+
+INSERT INTO `datdichvu` (`MaDatDV`, `MaHD`, `MaDV`) VALUES
+(7, 1, 'DV001'),
+(8, 1, 'DV002');
 -- --------------------------------------------------------
 
 --
@@ -57,13 +75,23 @@ CREATE TABLE `chitietdatphong` (
 
 CREATE TABLE `datphong` (
   `MaDP` int(11) NOT NULL,
-  `Phong` varchar(255) NOT NULL,
-  `NgayDat` varchar(255) NOT NULL,
+  `HoTen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `CMND` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `SDT` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `NgayNhanPhong` varchar(255) NOT NULL,
   `NgayTraPhong` varchar(255) NOT NULL,
-  `TrangThai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
+  `TrangThai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL DEFAULT 'Wait',
+  `MaPhong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `datphong`
+--
+
+INSERT INTO `datphong` (`MaDP`, `HoTen`, `CMND`, `SDT`, `NgayNhanPhong`, `NgayTraPhong`, `TrangThai`, `MaPhong`) VALUES
+(1, 'Yang Nguyên Thụy', '090987654321', '0987654321', '2/4/2023', '10/4/2023', 'Confirm', 1),
+(2, 'Phạm Hữu Trí', '0987654321', '0987654321', '2023-04-04', '2023-04-18', 'Confirm', 2),
+(4, 'Phạm Hữu Trí', '0123456789', '0987654321', '2023-04-18', '2023-04-25', 'Cancel', 3);
 -- --------------------------------------------------------
 
 --
@@ -95,25 +123,18 @@ INSERT INTO `dichvu` (`MaDV`, `LoaiDV`, `TenDV`, `GiaDV`, `MoTa`, `TrangThai`) V
 
 CREATE TABLE `hoadon` (
   `MaHD` int(11) NOT NULL,
+  `SoHD` varchar(255) NOT NULL,
   `NgayLap` varchar(255) NOT NULL,
-  `TongTriGia` float NOT NULL,
-  `TrangThai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `MaDP` int(11) NOT NULL
+  `TongTriGia` float NOT NULL DEFAULT 0,
+  `TrangThai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL DEFAULT 'Chờ thanh toán'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `phiphatsinh`
+-- Dumping data for table `hoadon`
 --
 
-CREATE TABLE `phiphatsinh` (
-  `MaPPS` int(11) NOT NULL,
-  `MaDV` int(11) NOT NULL,
-  `MaDP` int(11) NOT NULL,
-  `NgayPhatSinh` varchar(255) NOT NULL,
-  `TrangThai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `hoadon` (`MaHD`, `SoHD`, `NgayLap`, `TongTriGia`, `TrangThai`) VALUES
+(1, 'HD1', '4/7/2023', 1400000, 'Chờ thanh toán');
 
 -- --------------------------------------------------------
 
@@ -142,8 +163,29 @@ CREATE TABLE `phong` (
 --
 
 INSERT INTO `phong` (`MaPhong`, `SoPhong`, `LoaiPhong`, `TenPhong`, `TienIchPhong`, `SoNguoiToiDa`, `GiaPhong`, `TrangThai`, `DienTich`, `Giuong`, `MoTa1`, `MoTa2`, `Hinh`) VALUES
-(1, 'SP001', 'Standard', 'Phòng Standard', 'Có wifi, tivi, máy lạnh,...', 2, 400, 'Empty', '30 ft', 'King', '', '', 'room-1.jpg'),
-(2, 'SP002', 'Standard', 'Phòng Standard', 'Có wifi, tivi, máy lạnh,...', 2, 400, 'Disable', '30 ft', 'King', 'Phòng tiện ích đầy đủ', '', 'room-2.jpg');
+(1, 'SP001', 'Standard', 'Phòng Standard', 'Có wifi, tivi, máy lạnh,...', 2, 400000, 'Occupied', '30 ft', 'King', '', '', 'room-1.jpg'),
+(2, 'SP002', 'Standard', 'Phòng Standard', 'Có wifi, tivi, máy lạnh,...', 2, 400000, 'Occupied', '30 ft', 'King', 'Phòng tiện ích đầy đủ', '', 'room-2.jpg'),
+(3, 'SP003', 'Standard', 'Phòng Standard', 'Có wifi, tivi, máy lạnh,...', 2, 400000, 'Empty', '30 ft', 'King', 'Phòng tiện ích đầy đủ', '', 'room-3.jpg'),
+(4, 'SP004', 'Standard', 'Phòng Standard', 'Có wifi, tivi, máy lạnh,...', 2, 400000, 'Empty', '30 ft', 'King', 'Phòng tiện ích đầy đủ', '', 'room-4.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quyen`
+--
+
+CREATE TABLE `quyen` (
+  `MaQuyen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `TenQuyen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `quyen`
+--
+
+INSERT INTO `quyen` (`MaQuyen`, `TenQuyen`) VALUES
+('AD001', 'Admin'),
+('KD001', 'Phòng Kinh Doanh');
 
 -- --------------------------------------------------------
 
@@ -177,25 +219,30 @@ INSERT INTO `taikhoan` (`MaTK`, `MaNV`, `TaiKhoan`, `MatKhau`, `TenNV`, `CMND`, 
 --
 
 --
--- Indexes for table `chitietdatdichvu`
+
+-- Indexes for table `checkin`
 --
-ALTER TABLE `chitietdatdichvu`
-  ADD PRIMARY KEY (`MaCTDDV`),
-  ADD KEY `MaDP` (`MaDP`),
-  ADD KEY `MaDV` (`MaDV`);
+ALTER TABLE `checkin`
+  ADD PRIMARY KEY (`MaCheckIn`),
+  ADD KEY `MaPhong` (`MaPhong`);
 
 --
--- Indexes for table `chitietdatphong`
+-- Indexes for table `datdichvu`
 --
-ALTER TABLE `chitietdatphong`
-  ADD PRIMARY KEY (`MaCTDP`),
-  ADD KEY `MaDP` (`MaDP`);
+ALTER TABLE `datdichvu`
+  ADD PRIMARY KEY (`MaDatDV`),
+  ADD KEY `MaHD` (`MaHD`),
+  ADD KEY `MaDV` (`MaDV`);
+
 
 --
 -- Indexes for table `datphong`
 --
 ALTER TABLE `datphong`
-  ADD PRIMARY KEY (`MaDP`);
+
+  ADD PRIMARY KEY (`MaDP`),
+  ADD KEY `MaPhong` (`MaPhong`);
+
 
 --
 -- Indexes for table `dichvu`
@@ -207,22 +254,21 @@ ALTER TABLE `dichvu`
 -- Indexes for table `hoadon`
 --
 ALTER TABLE `hoadon`
-  ADD PRIMARY KEY (`MaHD`),
-  ADD KEY `MaDP` (`MaDP`);
 
---
--- Indexes for table `phiphatsinh`
---
-ALTER TABLE `phiphatsinh`
-  ADD PRIMARY KEY (`MaPPS`),
-  ADD KEY `MaDV` (`MaDV`),
-  ADD KEY `MaDP` (`MaDP`);
+  ADD PRIMARY KEY (`MaHD`);
 
 --
 -- Indexes for table `phong`
 --
 ALTER TABLE `phong`
   ADD PRIMARY KEY (`MaPhong`);
+
+--
+-- Indexes for table `quyen`
+--
+ALTER TABLE `quyen`
+  ADD PRIMARY KEY (`MaQuyen`);
+
 
 --
 -- Indexes for table `taikhoan`
@@ -235,40 +281,36 @@ ALTER TABLE `taikhoan`
 --
 
 --
--- AUTO_INCREMENT for table `chitietdatdichvu`
+
+-- AUTO_INCREMENT for table `checkin`
 --
-ALTER TABLE `chitietdatdichvu`
-  MODIFY `MaCTDDV` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `checkin`
+  MODIFY `MaCheckIn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `chitietdatphong`
+-- AUTO_INCREMENT for table `datdichvu`
 --
-ALTER TABLE `chitietdatphong`
-  MODIFY `MaCTDP` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `datdichvu`
+  MODIFY `MaDatDV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 
 --
 -- AUTO_INCREMENT for table `datphong`
 --
 ALTER TABLE `datphong`
-  MODIFY `MaDP` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaDP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `MaHD` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `phiphatsinh`
---
-ALTER TABLE `phiphatsinh`
-  MODIFY `MaPPS` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `phong`
 --
 ALTER TABLE `phong`
-  MODIFY `MaPhong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `MaPhong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `taikhoan`
@@ -281,28 +323,25 @@ ALTER TABLE `taikhoan`
 --
 
 --
--- Constraints for table `chitietdatdichvu`
+
+-- Constraints for table `checkin`
 --
-ALTER TABLE `chitietdatdichvu`
-  ADD CONSTRAINT `chitietdatdichvu_ibfk_1` FOREIGN KEY (`MaDP`) REFERENCES `datphong` (`MaDP`);
+ALTER TABLE `checkin`
+  ADD CONSTRAINT `checkin_ibfk_1` FOREIGN KEY (`MaPhong`) REFERENCES `phong` (`MaPhong`);
 
 --
--- Constraints for table `chitietdatphong`
+-- Constraints for table `datdichvu`
 --
-ALTER TABLE `chitietdatphong`
-  ADD CONSTRAINT `chitietdatphong_ibfk_1` FOREIGN KEY (`MaDP`) REFERENCES `datphong` (`MaDP`);
+ALTER TABLE `datdichvu`
+  ADD CONSTRAINT `datdichvu_ibfk_1` FOREIGN KEY (`MaHD`) REFERENCES `hoadon` (`MaHD`),
+  ADD CONSTRAINT `datdichvu_ibfk_2` FOREIGN KEY (`MaDV`) REFERENCES `dichvu` (`MaDV`);
 
 --
--- Constraints for table `hoadon`
+-- Constraints for table `datphong`
 --
-ALTER TABLE `hoadon`
-  ADD CONSTRAINT `hoadon_ibfk_1` FOREIGN KEY (`MaDP`) REFERENCES `datphong` (`MaDP`);
+ALTER TABLE `datphong`
+  ADD CONSTRAINT `datphong_ibfk_1` FOREIGN KEY (`MaPhong`) REFERENCES `phong` (`MaPhong`);
 
---
--- Constraints for table `phiphatsinh`
---
-ALTER TABLE `phiphatsinh`
-  ADD CONSTRAINT `phiphatsinh_ibfk_2` FOREIGN KEY (`MaDP`) REFERENCES `datphong` (`MaDP`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
