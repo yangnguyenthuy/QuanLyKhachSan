@@ -88,7 +88,7 @@
                                         <th>Tên dịch vụ</th>
                                         <th>Giá dịch vụ</th>
                                         <th>Mô tả</th>
-                                        <th>Chỉnh sửa dịch vụ</th>
+                                        <th>Chi tiết dịch vụ</th>
                                         <th>Xóa</th>
                                     </tr>
                                 </thead>

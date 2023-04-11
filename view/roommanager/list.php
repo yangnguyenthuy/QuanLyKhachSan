@@ -75,7 +75,7 @@
                                         <th>Số người tối đa</th>
                                         <th>Gía phòng</th>
                                         <th>Tình trạng phòng</th>
-                                        <th>Chỉnh sửa</th>
+                                        <th>Xem</th>
                                         <th>Xoá</th>
                                     </tr>
                                 </thead>

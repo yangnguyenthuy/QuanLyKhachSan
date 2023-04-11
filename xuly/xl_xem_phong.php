@@ -40,8 +40,8 @@
                     }
                 ?>
             </td>
-            <td><a href="./edit.php?id=<?php echo $row['MaPhong']; ?>">
-                    <button type="submit" class="btn btn-info btn-fill pull-right">Chỉnh sửa
+            <td><a href="./view.php?id=<?php echo $row['MaPhong']; ?>">
+                    <button type="submit" class="btn btn-info btn-fill pull-right">Xem
                     </button></td>
             <td><a><button class="btn btn-info btn-fill pull-right" data-toggle="modal"
                         data-id="<?php echo $row['MaPhong']; ?>"
