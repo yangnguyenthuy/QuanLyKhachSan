@@ -23,58 +23,58 @@
 
 <!-- Nav Item - Taophieucheckin_out -->
 <li class="nav-item">
-    <a class="nav-link" href="/checkIO">
+    <a class="nav-link" href="../TabInOut/listIO.php">
         <i class="fas fa-fw fa-table"></i>
         <span> Phiếu check In - Out</span></a>
 </li>
 
 <!-- Nav Item - Taobaocaodaohthu -->
 <li class="nav-item">
-    <a class="nav-link" href="/createIO">
+    <a class="nav-link" href="../TabInOut/checkIn.php">
         <i class="fas fa-fw fa-table"></i>
         <span>Tạo phiếu check In - Out</span></a>
 </li>
 
 <!-- Nav Item - Danh sách hóa đơn -->
 <li class="nav-item">
-    <a class="nav-link" href="/listBill">
+    <a class="nav-link" href="../Bill/danhsachHoaDon.php">
         <i class="fas fa-fw fa-table"></i>
         <span>Danh sách hóa đơn</span></a>
 </li>
 
 <!-- Nav Item - datphong -->
 <li class="nav-item">
-    <a class="nav-link" href="/bookingRoom">
+    <a class="nav-link" href="../tabBooking/bookingRoom.php">
         <i class="fas fa-fw fa-table"></i>
         <span>Danh sách đặt phòng</span></a>
 </li>
 
 <li class="nav-item">
-    <a class="nav-link" href="/roommanager/store">
+    <a class="nav-link" href="../roommanager/list.php">
         <i class="fas fa-fw fa-table"></i>
         <span>Danh sách phòng</span></a>
 </li>
 
 <!-- Nav Item - datphong -->
 <li class="nav-item">
-    <a class="nav-link" href="/serviceTab">
+    <a class="nav-link" href="../TabService/serviceTab.php">
         <i class="fas fa-fw fa-table"></i>
         <span>Danh sách dịch vụ</span></a>
 </li>
 
 <!-- Nav Item - datphong -->
 <li class="nav-item">
-    <a class="nav-link" href="/promotionTab">
+    <a class="nav-link" href="../Role/rolelist.php">
         <i class="fas fa-fw fa-table"></i>
-        <span>Danh sách khuyến mãi</span></a>
+        <span>Danh sách quyền</span></a>
 </li>
 
 <!-- Nav Item - Danh sách phản hồi -->
-<li class="nav-item">
+<!--<li class="nav-item">
     <a class="nav-link" href="/feedback/store">
         <i class="fas fa-fw fa-table"></i>
         <span>Danh sách phản hồi</span></a>
-</li>
+</li>-->
 
 
 <!-- Nav Item - Danh sách nhân viên -->
