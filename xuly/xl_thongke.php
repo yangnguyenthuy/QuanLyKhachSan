@@ -45,5 +45,25 @@
             echo json_encode($data);
             break;
         }
+        case 5:
+        {
+            $query = "SELECT TenQuyen, COUNT(`MaTK`) AS SoTaiKhoan 
+                        FROM `taikhoan` 
+                            JOIN nhanvien ON taikhoan.MaNV = nhanvien.MaNV
+                            JOIN quyen ON taikhoan.MaQuyen = quyen.MaQuyen
+                        WHERE `TrangThai` = 'Enable'
+                        GROUP BY TenQuyen";
+            $stmt =  mysqli_query($con,$query);
+
+            if(mysqli_num_rows($stmt) > 0){
+                while($result = mysqli_fetch_assoc($stmt))
+                {
+                    $data[] = $result;
+                }
+            }
+
+            echo json_encode($data);
+            break;
+        }
     }
 ?>
