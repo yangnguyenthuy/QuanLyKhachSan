@@ -45,25 +45,6 @@
             echo json_encode($data);
             break;
         }
-        case 4:
-        {
-            $query = "SELECT TenLoaiPhong, COUNT(phong.MaLoaiPhong) AS SoLuongPhong
-                        FROM `phong`
-                            JOIN `loaiphong` ON phong.MaLoaiPhong = loaiphong.MaLoaiPhong 
-                        WHERE `TrangThai` = 'Disable'
-                        GROUP BY TenLoaiPhong";
-            $stmt =  mysqli_query($con,$query);
-
-            if(mysqli_num_rows($stmt) > 0){
-                while($result = mysqli_fetch_assoc($stmt))
-                {
-                    $data[] = $result;
-                }
-            }
-
-            echo json_encode($data);
-            break;
-        }
         case 5:
         {
             $query = "SELECT TenQuyen, COUNT(`MaTK`) AS SoTaiKhoan 
